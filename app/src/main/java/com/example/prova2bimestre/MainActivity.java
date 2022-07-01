@@ -1,3 +1,4 @@
+// LAURA E EVANDRO
 package com.example.prova2bimestre;
 
 import androidx.appcompat.app.AlertDialog;
@@ -27,24 +28,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.opCalcularMedia:
-                Intent intent = new Intent(getApplicationContext(), MediaActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.opFinalizarApp:
-                AlertDialog.Builder dialogo = new AlertDialog.Builder(MainActivity.this);
-                dialogo.setTitle("FECHANDO O APP");
-                dialogo.setMessage("Deseja mesmo fechar o app?");
-                dialogo.setPositiveButton("Fechar o app", new EscutadorDialogoOK());
-                dialogo.setNegativeButton("Cancelar", new EscutadorDialogoCancela());
-                dialogo.setCancelable(false);
-                dialogo.create();
-                dialogo.show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == R.id.opCalcularMedia) {
+            Intent intent = new Intent(getApplicationContext(), MediaActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (itemId == R.id.opFinalizarApp) {
+            AlertDialog.Builder dialogo = new AlertDialog.Builder(MainActivity.this);
+            dialogo.setTitle("FECHANDO O APP");
+            dialogo.setMessage("Deseja mesmo fechar o app?");
+            dialogo.setPositiveButton("Fechar o app", new EscutadorDialogoOK());
+            dialogo.setNegativeButton("Cancelar", new EscutadorDialogoCancela());
+            dialogo.setCancelable(false);
+            dialogo.create();
+            dialogo.show();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private class EscutadorDialogoOK implements DialogInterface.OnClickListener {
